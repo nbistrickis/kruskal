@@ -12,20 +12,18 @@ def find_set(vertice):
 # joins two sets: set, which includes 'vertice1' and set, which
 # includes 'vertice2'
 def union(u, v, edges):
-    parent1 = find_set(u)
-    parent2 = find_set(v)
+    ancestor1 = find_set(u)
+    ancestor2 = find_set(v)
     # if u and v are not connected by a path
-    if parent1 != parent2:
-        
+    if ancestor1 != ancestor2:
+        for edge in edges:
+            parent[ancestor1] = ancestor2
 
 def kruskal(graph):
     mst = set()
     # puts all the vertices in seperate sets
     for vertice in graph['V']:
         make_set(vertice)
-
-    print("Starting sets:")
-    print(parent)
 
     edges = list(graph['E'])
     # sorts edges in ascending order
@@ -36,21 +34,24 @@ def kruskal(graph):
         if find_set(u) != find_set(v):
             mst.add(edge)
             union(u, v, edges)
-            print(parent)
-    print("final sets")
-    print(parent)
 
     return mst
 
+# input graph
 graph = {
-        'V': ['A','B', 'C', 'D'],
+        'V': ['A', 'B', 'C', 'D', 'E', 'F'],
         'E': set([
             (1, 'A', 'B'),
-            (1, 'A', 'C'),
-            (2, 'A', 'D'),
-            (3, 'B', 'D'),
-            (2, 'C', 'D'),
+            (5, 'A', 'C'),
+            (3, 'A', 'D'),
+            (2, 'B', 'D'),
+            (1, 'C', 'D'),
+            (4, 'B', 'C'),
+            (3, 'C', 'F'),
+            (1, 'D', 'E'),
+            (6, 'E', 'F'),
              ])
         }
 
+print("Minimal Spanning Tree:")
 print(kruskal(graph))
