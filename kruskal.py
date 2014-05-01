@@ -1,13 +1,16 @@
 parent = dict()
 
+
 def make_set(vertice):
     parent[vertice] = vertice
+
 
 # returns first element of set, which includes 'vertice'
 def find_set(vertice):
     if parent[vertice] != vertice:
         parent[vertice] = find_set(parent[vertice])
     return parent[vertice]
+
 
 # joins two sets: set, which includes 'vertice1' and set, which
 # includes 'vertice2'
@@ -18,6 +21,7 @@ def union(u, v, edges):
     if ancestor1 != ancestor2:
         for edge in edges:
             parent[ancestor1] = ancestor2
+
 
 def kruskal(graph):
     mst = set()
@@ -61,7 +65,7 @@ graph = {
 mst = kruskal(graph)
 print("Minimal Spanning Tree:")
 print(mst)
-mst_weight = 0;
+mst_weight = 0
 for edge in mst:
     weight, u, v = edge
     mst_weight += weight
