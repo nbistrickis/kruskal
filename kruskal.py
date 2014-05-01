@@ -39,19 +39,32 @@ def kruskal(graph):
 
 # input graph
 graph = {
-        'V': ['A', 'B', 'C', 'D', 'E', 'F'],
+        'V': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
         'E': set([
-            (1, 'A', 'B'),
-            (5, 'A', 'C'),
-            (3, 'A', 'D'),
-            (2, 'B', 'D'),
-            (1, 'C', 'D'),
-            (4, 'B', 'C'),
-            (3, 'C', 'F'),
-            (1, 'D', 'E'),
-            (6, 'E', 'F'),
-             ])
+            (2, '1', '2'),
+            (2, '1', '3'),
+            (2, '2', '3'),
+            (1, '2', '6'),
+            (1, '3', '4'),
+            (5, '4', '6'),
+            (4, '6', '7'),
+            (7, '4', '5'),
+            (6, '7', '5'),
+            (1, '4', '10'),
+            (2, '5', '10'),
+            (8, '5', '8'),
+            (2, '5', '9'),
+            (3, '8', '9'),
+            ])
         }
 
+mst = kruskal(graph)
 print("Minimal Spanning Tree:")
-print(kruskal(graph))
+print(mst)
+mst_weight = 0;
+for edge in mst:
+    weight, u, v = edge
+    mst_weight += weight
+
+print("Cost: ")
+print(mst_weight)
